@@ -5,6 +5,15 @@ describe("Formulário de consultoria", () => {
 
     cy.goTo("Formulários", "Consultoria");
 
-    cy.get("#name").type("Juliana Matos");
+    // cy.get("#name").type("Juliana Matos");
+    // cy.get("#email").type("juliana@webdojo");
+
+    cy.get("input[placeholder='Digite seu nome completo']").type(
+      "Juliana Matos"
+    );
+    cy.get("input[placeholder='Digite seu email']").type("juliana@webdojo");
+    cy.get("input[placeholder='(00) 00000-0000']")
+      .type("71988884545")
+      .should("have.value", "(71) 98888-4545");
   });
 });

@@ -40,5 +40,9 @@ describe("Formulário de consultoria", () => {
       .find("input[type='checkbox']")
       .check()
       .should("be.checked");
+
+    cy.get("input[type='file']").selectFile("cypress/fixtures/onboarding.pdf", {
+      force: true,
+    });
   });
 });

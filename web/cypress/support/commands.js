@@ -24,7 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 Cypress.Commands.add("start", () => {
-  cy.viewport(1440, 900);
+  cy.viewport(1200, 840);
   cy.visit("/");
 });
 

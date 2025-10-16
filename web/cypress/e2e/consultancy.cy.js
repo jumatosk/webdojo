@@ -15,5 +15,14 @@ describe("Formulário de consultoria", () => {
     cy.get("input[placeholder='(00) 00000-0000']")
       .type("71988884545")
       .should("have.value", "(71) 98888-4545");
+
+    //Estratégia utilizada para encontrar campo através do id
+    // cy.get("#consultancyType").select("In Company");
+
+    // Estratégia utilizada para encontrar campo através da label e do seu elemento pai
+    cy.contains("label", "Tipo de Consultoria")
+      .parent()
+      .find("select")
+      .select("In Company");
   });
 });

@@ -5,13 +5,13 @@ describe("Formulário de consultoria", () => {
 
     cy.goTo("Formulários", "Consultoria");
 
-    cy.get("#name").type("Juliana Matos");
-    cy.get("#email").type("juliana@webdojo");
+    // cy.get("#name").type("Juliana Matos");
+    // cy.get("#email").type("juliana@webdojo");
 
     cy.get("input[placeholder='Digite seu nome completo']").type(
       "Juliana Matos"
     );
-    cy.get("input[placeholder='Digite seu email']").type("juliana@webdojo");
+    cy.get("input[placeholder='Digite seu email']").type("juliana@webdojo.com");
     cy.get("input[placeholder='(00) 00000-0000']")
       .type("71988884545")
       .should("have.value", "(71) 98888-4545");
@@ -35,6 +35,8 @@ describe("Formulário de consultoria", () => {
       .find("input")
       .should("be.not.checked");
 
+    cy.get("#document").type("12345678900");
+
     cy.contains("label", "Como nos conheceu?")
       .parent()
       .find("input[type='checkbox']")
@@ -44,6 +46,8 @@ describe("Formulário de consultoria", () => {
     cy.get("input[type='file']").selectFile("cypress/fixtures/onboarding.pdf", {
       force: true,
     });
+
+    cy.get("#details").type("Minha necessidade é ...");
 
     const techs = [
       "JavaScript",
@@ -65,5 +69,12 @@ describe("Formulário de consultoria", () => {
         .contains("span", tech)
         .should("be.visible");
     });
+
+    cy.contains("label", "termos de uso")
+      .find("input")
+      .check()
+      .should("be.checked");
+
+    cy.contains("button", "Enviar formulário").click();
   });
 });

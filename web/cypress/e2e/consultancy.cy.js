@@ -34,5 +34,11 @@ describe("Formulário de consultoria", () => {
     cy.contains("label", "Pessoa Jurídica")
       .find("input")
       .should("be.not.checked");
+
+    cy.contains("label", "Como nos conheceu?")
+      .parent()
+      .find("input[type='checkbox']")
+      .check()
+      .should("be.checked");
   });
 });

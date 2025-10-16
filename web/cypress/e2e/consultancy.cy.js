@@ -44,5 +44,26 @@ describe("Formulário de consultoria", () => {
     cy.get("input[type='file']").selectFile("cypress/fixtures/onboarding.pdf", {
       force: true,
     });
+
+    const techs = [
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "Java",
+      "C++",
+      "C#",
+      "PHP",
+      "Ruby",
+    ];
+
+    techs.forEach((tech) => {
+      cy.get('input[placeholder="Digite uma tecnologia e pressione Enter"]')
+        .type(tech)
+        .type("{enter}");
+      cy.contains("label", "Tecnologias")
+        .parent()
+        .contains("span", tech)
+        .should("be.visible");
+    });
   });
 });

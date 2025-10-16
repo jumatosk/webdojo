@@ -77,4 +77,23 @@ describe("Formulário de consultoria", () => {
 
     cy.contains("button", "Enviar formulário").click();
   });
+
+  it.only("Deve validar os campos obrigatórios", () => {
+    cy.start();
+    cy.submitLogin("papito@webdojo.com", "katana123");
+
+    cy.goTo("Formulários", "Consultoria");
+
+    cy.contains("button", "Enviar formulário").click();
+
+    const requiredFields = [
+      { field: "p", message: "Digite nome e sobrenome" },
+      { field: "p", message: "Informe um email válido" },
+      { field: "p", message: "Você precisa aceitar os termos de uso" },
+    ];
+
+    requiredFields.forEach(({ field, message }) => {
+      cy.checkRequiredFields(field, message);
+    });
+  });
 });

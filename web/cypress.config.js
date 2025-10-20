@@ -5,7 +5,6 @@ module.exports = defineConfig({
   e2e: {
     baseUrl: process.env.BASE_URL,
     setupNodeEvents(on, config) {},
-    defaultCommandTimeout: 8000,
   },
   env: {
     USER_EMAIL: process.env.USER_EMAIL,

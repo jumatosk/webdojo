@@ -1,5 +1,5 @@
 describe("Formulário de consultoria", () => {
-  it("Deve solicitar consultoria individual", () => {
+  it.only("Deve solicitar consultoria individual", () => {
     cy.start();
     cy.submitLogin("papito@webdojo.com", "katana123");
 
@@ -78,7 +78,7 @@ describe("Formulário de consultoria", () => {
     cy.contains("button", "Enviar formulário").click();
   });
 
-  it.only("Deve validar os campos obrigatórios", () => {
+  it("Deve validar os campos obrigatórios", () => {
     cy.start();
     cy.submitLogin("papito@webdojo.com", "katana123");
 
@@ -86,14 +86,18 @@ describe("Formulário de consultoria", () => {
 
     cy.contains("button", "Enviar formulário").click();
 
-    const requiredFields = [
-      { field: "p", message: "Digite nome e sobrenome" },
-      { field: "p", message: "Informe um email válido" },
-      { field: "p", message: "Você precisa aceitar os termos de uso" },
+    const requiredFieldsInput = [
+      { label: "Nome Completo", field: "p", message: "Campo obrigatório" },
+      { label: "Email", field: "p", message: "Campo obrigatório" },
+      {
+        label: "termos de uso",
+        field: "p",
+        message: "Você precisa aceitar os termos de uso",
+      },
     ];
 
-    requiredFields.forEach(({ field, message }) => {
-      cy.checkRequiredFields(field, message);
+    requiredFieldsInput.forEach(({ label, field, message }) => {
+      cy.checkRequiredFields(label, field, message);
     });
   });
 });

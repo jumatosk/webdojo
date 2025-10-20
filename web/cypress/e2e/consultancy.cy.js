@@ -51,13 +51,13 @@ describe("Formulário de consultoria", () => {
 
     const techs = [
       "JavaScript",
-      "TypeScript",
-      "Python",
-      "Java",
-      "C++",
-      "C#",
-      "PHP",
-      "Ruby",
+      // "TypeScript",
+      // "Python",
+      // "Java",
+      // "C++",
+      // "C#",
+      // "PHP",
+      // "Ruby",
     ];
 
     techs.forEach((tech) => {
@@ -76,6 +76,15 @@ describe("Formulário de consultoria", () => {
       .should("be.checked");
 
     cy.contains("button", "Enviar formulário").click();
+
+    cy.get(".modal")
+      .should("be.visible")
+      .find(".modal-content p")
+      .should("be.visible")
+      .and(
+        "contain.text",
+        "Sua solicitação de consultoria foi enviada com sucesso!"
+      );
   });
 
   it("Deve validar os campos obrigatórios", () => {

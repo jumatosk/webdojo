@@ -1,7 +1,7 @@
 describe("Login", () => {
-  it("Deve realizar login com sucesso", () => {
+  it.only("Deve realizar login com sucesso", () => {
     cy.start();
-    cy.submitLogin("papito@webdojo.com", "katana123");
+    cy.submitLogin(Cypress.env("USER_EMAIL"), Cypress.env("USER_PASSWORD"));
 
     cy.get('[data-cy="user-name"]')
       .should("be.visible")

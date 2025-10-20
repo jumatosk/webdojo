@@ -1,9 +1,14 @@
+require("dotenv").config();
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "http://localhost:3000",
+    baseUrl: process.env.BASE_URL,
     setupNodeEvents(on, config) {},
     defaultCommandTimeout: 8000,
+  },
+  env: {
+    USER_EMAIL: process.env.USER_EMAIL,
+    USER_PASSWORD: process.env.USER_PASSWORD,
   },
 });

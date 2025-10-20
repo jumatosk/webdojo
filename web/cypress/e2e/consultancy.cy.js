@@ -1,10 +1,11 @@
 describe("Formulário de consultoria", () => {
-  it.only("Deve solicitar consultoria individual", () => {
+  beforeEach(() => {
     cy.start();
     cy.submitLogin("papito@webdojo.com", "katana123");
-
     cy.goTo("Formulários", "Consultoria");
+  });
 
+  it("Deve solicitar consultoria individual", () => {
     // cy.get("#name").type("Juliana Matos");
     // cy.get("#email").type("juliana@webdojo");
 
@@ -88,11 +89,6 @@ describe("Formulário de consultoria", () => {
   });
 
   it("Deve validar os campos obrigatórios", () => {
-    cy.start();
-    cy.submitLogin("papito@webdojo.com", "katana123");
-
-    cy.goTo("Formulários", "Consultoria");
-
     cy.contains("button", "Enviar formulário").click();
 
     const requiredFieldsInput = [
